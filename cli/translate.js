@@ -1,7 +1,7 @@
 import * as dotenv from 'dotenv'
 import ora from 'ora'
 import { performance } from 'perf_hooks'
-import { translate } from '../lib/translate.js'
+import { translate } from '../lib/api.js'
 import { createInterface } from 'readline'
 
 dotenv.config()
@@ -35,6 +35,10 @@ const intervalId = setInterval(() => {
 }, 1000)
 
 const data = await translate({ input, from, to })
+  .catch(error => {
+    spinner.fail(error.message)
+    process.exit(1)
+  })
 
 const totalSeconds = Math.floor((performance.now() - start) / 1000)
 spinner.succeed(`Generated with (${totalSeconds}s)`)
