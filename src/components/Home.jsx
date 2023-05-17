@@ -6,8 +6,8 @@ export default function Home() {
   const app = useContext(AppContext)
 
   return (
-    <>
-      <h1>Home</h1>
+    <div className='home'>
+      <img className='home-icon' src='/ico.svg' alt='Google Translate' />
       <ul>
         { app.pages.map((page, index) => (
           <li key={index}>
@@ -15,6 +15,6 @@ export default function Home() {
           </li>
         ))}
       </ul>
-    </>
+    </div>
   )
 }

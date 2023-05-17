@@ -16,7 +16,10 @@ export default function Nav() {
         <li className={
           app.view === 'home' ? 'active' : ''
         }>
-          <a onClick={() => handleClick('home')}>AIMIA</a>
+          <a onClick={() => handleClick('home')}>
+            <img src='/ico.svg' alt='Google Translate' />
+            Home
+          </a>
         </li>
       </ul>
       <ul>

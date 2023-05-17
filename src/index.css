@@ -5,12 +5,13 @@
 
   color-scheme: light;
 
-  --background-color: #fafafa;
+  --background-color: #f1f1f1;
+  --text-color-dark : #333;
   --text-color : #444;
   --text-color-light : #ffffff;
 
   --primary-color: #007a83;
-  --primary-color-light: #b6d9db;
+  --primary-color-light: #cae2e4;
   --primary-color-dark: #005c63;
   --secondary-color: #ff983f;
   --secondary-color-light: #fdbe87;
