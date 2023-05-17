@@ -1,0 +1,196 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light;
+
+  --background-color: #fafafa;
+  --text-color : #444;
+  --text-color-light : #ffffff;
+
+  --primary-color: #007a83;
+  --primary-color-light: #b6d9db;
+  --primary-color-dark: #005c63;
+  --secondary-color: #ff983f;
+  --secondary-color-light: #fdbe87;
+  --secondary-color-dark: #ff7700;
+  --tertiary-color: #ff4c82;
+  --tertiary-color-light: #ff93b4;
+  --tertiary-color-dark: #ff0f57;
+
+  --success-color: #00c853;
+  --warning-color: #ffd600;
+  --error-color: #d50000;
+  --info-color: #0091ea;
+
+  --border-radius: 2px;
+  --border-color: #d4d4d4;
+  --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --transition-duration: 0.1s;
+  --transition-timing-function: ease-in-out;
+
+
+  color: var(--text-color);
+  background-color: var(--background-color);
+
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100vw;
+  min-height: 100vh;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 960px;
+  min-height: 100vh;
+}
+
+#root {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+a {
+  font-weight: 500;
+  color: var(--primary-color);
+  text-decoration: inherit;
+  cursor: pointer;
+}
+a:hover {
+  color: var(--primary-color-dark);
+  text-decoration: underline;
+}
+
+h1 {
+  font-size: 2rem;
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: 1.5rem;
+  line-height: 1.1;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  margin: 0.5rem 0;
+}
+
+button {
+  border-radius: var(--border-radius);
+  border: none;
+  padding: 0.4rem 1.2rem;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--secondary-color);
+  color: var(--text-color-light);
+  cursor: pointer;
+  transition: background-color var(--transition-duration) var(--transition-timing-function);
+}
+button:hover {
+  background-color: var(--secondary-color-dark);
+}
+button:focus,
+button:focus-visible {
+  outline: none;
+  box-shadow: 
+    0 0 0 2px var(--background-color),
+    0 0 0 4px var(--secondary-color-dark);
+}
+button:active {
+  background-color: var(--secondary-color-dark);
+}
+button:disabled {
+  opacity: 0.5;
+  background-color: var(--secondary-color);
+  cursor: not-allowed;
+}
+
+button[type="submit"] {
+  background-color: var(--primary-color);
+}
+button[type="submit"]:hover {
+  background-color: var(--primary-color-dark);
+}
+button[type="submit"]:focus,
+button[type="submit"]:focus-visible {
+  outline: none;
+  box-shadow: 
+    0 0 0 2px var(--background-color),
+    0 0 0 4px var(--primary-color-dark);
+}
+button[type="submit"]:active {
+  background-color: var(--primary-color-dark);
+}
+
+button[type="reset"] {
+  background-color: var(--tertiary-color);
+}
+button[type="reset"]:hover {
+  background-color: var(--tertiary-color-dark);
+}
+button[type="reset"]:focus,
+button[type="reset"]:focus-visible {
+  outline: none;
+  box-shadow: 
+    0 0 0 2px var(--background-color),
+    0 0 0 4px var(--tertiary-color-dark);
+}
+button[type="reset"]:active {
+  background-color: var(--tertiary-color-dark);
+}
+
+textarea {
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  padding: 0.4rem;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: box-shadow var(--transition-duration) var(--transition-timing-function);
+  width: 100%;
+  resize: none;
+}
+textarea:focus,
+textarea:focus-visible {
+  outline: none;
+  box-shadow: var(--box-shadow);
+}
+
+select {
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  padding: 0.4rem;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: box-shadow var(--transition-duration) var(--transition-timing-function);
+  width: 100%;
+}
