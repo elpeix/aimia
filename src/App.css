@@ -23,22 +23,18 @@ main {
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 0 0 1rem 0;
-}
-
-.content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
   max-width: 960px;
-  padding: 2em 0;
-  gap: 2em;
+  padding: 2rem 0.2rem 1rem;
+  gap: 2rem;
 }
 
 footer {
   margin-top:auto;
   max-width: 56rem;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  text-align: center;
+  padding: 0.5rem;
 }
 
 .home {
