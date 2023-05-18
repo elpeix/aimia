@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { translate } from '../../lib/api.js'
-import Loading from './Loading.jsx'
+import { translate } from '../../../lib/api.js'
+import Loading from '../Loading.jsx'
+import styles from './Translate.module.css'
 
 export default function Translate() {
 
@@ -45,10 +46,9 @@ export default function Translate() {
   }
 
   return (
-    <div className='translate'>
-      <h1>Translate</h1>
-      <div className='translate-content'>
-        <div className='translate-from'>
+    <div className={styles.translate}>
+      <div className={styles.content}>
+        <div>
           <h3>From</h3>
           <select value={from} onChange={e => setFrom(e.target.value)}>
             <option value='auto'>Auto Detect</option>
@@ -63,21 +63,21 @@ export default function Translate() {
             onKeyDown={handleKeyDown}
           ></textarea>
         </div>
-        <div className='translate-to'>
+        <div>
           <h3>To</h3>
           <select value={to} onChange={e => setTo(e.target.value)}>
             {languages.map((language, index) => (
               <option key={index} value={language.code}>{language.name}</option>
             ))}
           </select>
-          <div className='translate-to-result'>
+          <div className={styles.result}>
             {loading && <Loading />}
             <textarea value={translation} readOnly></textarea>
           </div>
         </div>
       </div>
               
-      <div className='translate-buttons'>
+      <div className={styles.buttons}>
         <button 
           type='submit'
           onClick={handleSubmit}
@@ -102,8 +102,6 @@ export default function Translate() {
           </button>
         )}
       </div>
-
-
 
       {error && <p className='error'>{error}</p>}
     </div>

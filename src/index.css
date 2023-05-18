@@ -6,8 +6,8 @@
   color-scheme: light;
 
   --background-color: #f1f1f1;
-  --text-color-dark : #333;
-  --text-color : #444;
+  --text-color-dark : #111;
+  --text-color : #333;
   --text-color-light : #ffffff;
 
   --primary-color: #007a83;
@@ -26,8 +26,8 @@
   --info-color: #0091ea;
 
   --border-radius: 2px;
-  --border-color: #d4d4d4;
-  --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --border-color: #bdbdbd;
+  --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
   --transition-duration: 0.1s;
   --transition-timing-function: ease-in-out;
 
@@ -194,4 +194,10 @@ select {
   color: var(--text-color);
   transition: box-shadow var(--transition-duration) var(--transition-timing-function);
   width: 100%;
+}
+
+select:focus,
+select:focus-visible {
+  outline: none;
+  box-shadow: var(--box-shadow);
 }

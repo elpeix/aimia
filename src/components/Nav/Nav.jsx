@@ -1,6 +1,7 @@
 
 import React, { useContext } from 'react'
-import { AppContext } from '../App'
+import { AppContext } from '../../App'
+import styles from './Nav.module.css'
 
 export default function Nav() {
 
@@ -11,7 +12,7 @@ export default function Nav() {
   }
   
   return (
-    <nav>
+    <nav className={styles.nav}>
       <ul>
         <li className={
           app.view === 'home' ? 'active' : ''
