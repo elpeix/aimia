@@ -3,6 +3,8 @@ import { translate } from '../../../lib/api.js'
 import Loading from '../Loading.jsx'
 import styles from './Translate.module.css'
 import { translatePrompt } from '../../../lib/prompts.js'
+import Prompt from '../Prompt/Prompt.jsx'
+import Scroller from '../Scroller/Scroller.jsx'
 
 export default function Translate() {
 
@@ -108,28 +110,9 @@ export default function Translate() {
 
         {error && <p className='error'>{error}</p>}
       </div>
-      <div className={styles.sideBar}>
-        <h3>Instructions</h3>
-        <p>
-          Enter text to translate in the left box. Select the language you want to translate from and to.
-          Click the translate button or press Ctrl + Enter.
-        </p>
-        <div>
-          <textarea value={translatePrompt.system} />
-        </div>
-        {
-          translatePrompt.samples.map((example, index) => {
-            return (
-              <div key={index}>
-                <h3>{example.role}</h3>
-                <div>
-                  <textarea value={example.content} />
-                </div>
-              </div>
-            )
-          })
-        }
-      </div>
+      <Scroller className={`${styles.sideBar} scrollable top`}>
+        <Prompt prompt={translatePrompt} />
+      </Scroller>
     </div>
   )
 }

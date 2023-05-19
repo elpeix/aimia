@@ -31,6 +31,7 @@
   --transition-duration: 0.1s;
   --transition-timing-function: ease-in-out;
 
+  --max-width: 68rem;
 
   color: var(--text-color);
   background-color: var(--background-color);
