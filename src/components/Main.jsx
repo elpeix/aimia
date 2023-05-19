@@ -9,7 +9,7 @@ export default function Main() {
 
   return (
     <main className='content'>
-      { title && <h1>{title}</h1> }
+      <div className='header'>{ title && <h1>{title}</h1> }</div>
       {children}
     </main>
   )

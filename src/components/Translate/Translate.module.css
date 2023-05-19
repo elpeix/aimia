@@ -1,50 +1,81 @@
 
 .translate {
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: start;
-    gap: 1.5rem;
-    margin: 0.5rem 0;
-    width: 100%;
-  }
+  display: grid;
+  grid-template-columns: minmax(30%, auto) minmax(20rem, 30rem);
+  margin: 0.5rem 0;
+  width: 100%;
+}
 
-  .content {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
-    width: 100%;
-  }
-  
-  .content > * {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: start;
-    gap: 0.5rem;
-  }
-  
-  .content textarea {
-    height: 10rem;
-    resize: none;
-  }
-  
-  .result {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .buttons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
-    width: 100%;
-  }
-  
+.main {
+  display: flex;
+  flex-grow: 4;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  gap: 1.5rem;
+  margin: 0.5rem 0;
+  padding: 0 1rem;
+  width: 100%;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 960px;
+}
+
+.content > * {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  gap: 0.5rem;
+}
+
+.content textarea {
+  height: 10rem;
+  resize: none;
+}
+
+.result {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.sideBar {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  gap: 1.5rem;
+  margin: 0.5rem 0;
+  padding: 0 1rem;
+  width: 100%;
+  height: 100%;
+}
+
+.sideBar > * {
+  width: 100%;
+}
+
+.sideBar textarea {
+  height: 10rem;
+  resize: none;
+  width: 100%;
+}

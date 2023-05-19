@@ -24,8 +24,8 @@ main {
   justify-content: center;
   width: 100%;
   max-width: 960px;
-  padding: 2rem 0.2rem 1rem;
-  gap: 2rem;
+  padding: 2em 0;
+  gap: 2em;
 }
 
 footer {
