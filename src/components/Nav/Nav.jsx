@@ -1,6 +1,7 @@
 
 import React, { useContext } from 'react'
-import { AppContext } from '../App'
+import { AppContext } from '../../App'
+import styles from './Nav.module.css'
 
 export default function Nav() {
 
@@ -11,10 +12,10 @@ export default function Nav() {
   }
   
   return (
-    <nav>
+    <nav className={styles.nav}>
       <ul>
         <li className={
-          app.view === 'home' ? 'active' : ''
+          app.view === 'home' ? styles.active : ''
         }>
           <a onClick={() => handleClick('home')}>
             <img src='/ico.svg' alt='Google Translate' />
@@ -25,7 +26,7 @@ export default function Nav() {
       <ul>
         { app.pages.map((page, index) => (
           <li key={index} className={
-            page.view === app.view ? 'active' : ''
+            page.view === app.view ? styles.active : ''
           }>
             <a onClick={() => handleClick(page.view)}>{page.name}</a>
           </li>

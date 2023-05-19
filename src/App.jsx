@@ -2,7 +2,7 @@ import React, { createContext, useState } from 'react'
 
 import './App.css'
 import Layout from './components/Layout'
-import Translate from './components/Translate'
+import Translate from './components/Translate/Translate'
 import Home from './components/Home'
 
 export const AppContext = createContext()
@@ -11,7 +11,7 @@ export default function App() {
 
   const [view, setView] = useState('home')
 
-  const home = { name: 'Home', view: 'home', component: <Home /> }
+  const home = { name: '', view: 'home', component: <Home /> }
   const pages = [
     { name: 'Translate', view: 'translate', component: <Translate /> },
     { name: 'Create content', view: 'create' },
