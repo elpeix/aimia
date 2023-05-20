@@ -5,8 +5,12 @@ export default function Prompt({ prompt, onChange }) {
 
   const [system, setSystem] = useState(prompt.system)
   const [samples, setSamples] = useState(prompt.samples)
+  const [changed, setChanged] = useState(false)
 
-  const handleChange = (changed) => onChange({ changed, system, samples })
+  const handleChange = (promptChanged) => {
+    setChanged(promptChanged)
+    onChange({ promptChanged, system, samples })
+  }
 
   return (
     <div className={styles.prompt}>
@@ -65,10 +69,12 @@ export default function Prompt({ prompt, onChange }) {
             setSamples([...samples, { user: '', assistant: '' }])
             handleChange(true)
           }}>Add Sample</button>
-          <button type='reset' onClick={() => {
-            setSamples(prompt.samples)
-            handleChange(false)
-          }}>Reset samples</button>
+          { changed &&
+            <button type='reset' onClick={() => {
+              setSamples(prompt.samples)
+              handleChange(false)
+            }}>Reset samples</button>
+          }
         </div>
       </div>
     </div>
