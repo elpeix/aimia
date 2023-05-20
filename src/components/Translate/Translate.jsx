@@ -33,8 +33,6 @@ export default function Translate() {
     }
   }
 
-  console.log('rendering Translate', translatePrompt)
-
   const handleSubmit = async (e) => {
     e.preventDefault()
     if (!text || loading || from === to) return

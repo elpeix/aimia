@@ -8,6 +8,7 @@
   --background-color: #f1f1f1;
   --text-color-dark : #111;
   --text-color : #333;
+  --text-color-mid : #777;
   --text-color-light : #ffffff;
 
   --primary-color: #007a83;
@@ -24,6 +25,11 @@
   --warning-color: #ffd600;
   --error-color: #d50000;
   --info-color: #0091ea;
+
+  --color-gray-50: #fafafa;
+  --color-gray-100: #f5f5f5;
+  --color-gray-200: #eeeeee;
+  --color-gray-300: #e0e0e0;
 
   --border-radius: 2px;
   --border-color: #bdbdbd;
@@ -131,12 +137,16 @@ button:disabled {
   cursor: not-allowed;
 }
 
+button.primary,
 button[type="submit"] {
   background-color: var(--primary-color);
 }
+button.primary:hover,
 button[type="submit"]:hover {
   background-color: var(--primary-color-dark);
 }
+button.primary:focus,
+button.primary:focus-visible,
 button[type="submit"]:focus,
 button[type="submit"]:focus-visible {
   outline: none;
@@ -148,12 +158,16 @@ button[type="submit"]:active {
   background-color: var(--primary-color-dark);
 }
 
+button.tertiary,
 button[type="reset"] {
   background-color: var(--tertiary-color);
 }
+button.tertiary:hover,
 button[type="reset"]:hover {
   background-color: var(--tertiary-color-dark);
 }
+button.tertiary:focus,
+button.tertiary:focus-visible,
 button[type="reset"]:focus,
 button[type="reset"]:focus-visible {
   outline: none;

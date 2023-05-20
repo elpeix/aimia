@@ -1,3 +1,27 @@
+.prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+}
+.prompt > * {
+  width: 100%;
+}
+
+.prompt textarea {
+  height: 7rem;
+  min-height: 4rem;
+  max-height: 12rem;
+  font-size: 0.9rem;
+  resize: vertical;
+  width: 100%;
+}
+
+.system textarea {
+  min-height: 6rem;;
+}
 .samples {
   display: flex;
   flex-direction: column;
@@ -8,5 +32,52 @@
 }
 
 .samples > * {
+  width: 100%;
+}
+
+.sample {
+  padding: 0.5rem 0;
+}
+.sample:last-child {
+  border-bottom: none;
+}
+
+.sampleHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0.5rem 0;
+  color: var(--text-color-mid);
+}
+
+.delete {
+  color: var(--tertiary-color);
+  background-color: var(--background-color);
+  padding: 0rem;
+  width: 1.4rem;
+  aspect-ratio: 1;
+
+}
+.delete:hover {
+  color: var(--text-color-light);
+  background-color: var(--tertiary-color-dark);
+}
+.delete:focus,
+.delete:focus-visible {
+  outline: none;
+  box-shadow: 
+    0 0 0 2px var(--background-color),
+    0 0 0 4px var(--tertiary-color-dark);
+}
+.delete:active {
+  background-color: var(--tertiary-color-dark);
+}
+
+.sampleButtons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0.5rem 0 0.5rem;
   width: 100%;
 }
