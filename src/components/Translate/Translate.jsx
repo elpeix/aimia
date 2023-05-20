@@ -14,6 +14,7 @@ export default function Translate() {
   const [translation, setTranslation] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState()
+  const [changedPrompt, setChangedPrompt] = useState({ changed: false, system: '', samples: [] })
 
   const languages = [
     { code: 'en', name: 'English' },
@@ -38,7 +39,8 @@ export default function Translate() {
     if (!text || loading || from === to) return
     setTranslation('')
     setLoading(true)
-    const result = await translate({ from, to, input: text })
+    const prompt = changedPrompt.changed ? changedPrompt : translatePrompt
+    const result = await translate({ from, to, input: text, prompt })
       .catch(err => {
         console.log(err)
         setError(err.message)
@@ -109,7 +111,9 @@ export default function Translate() {
         {error && <p className='error'>{error}</p>}
       </div>
       <Scroller className={`${styles.sideBar} scrollable top`}>
-        <Prompt prompt={translatePrompt} />
+        <Prompt
+          prompt={translatePrompt}
+          onChange={(data) => setChangedPrompt(data)} />
       </Scroller>
     </div>
   )
