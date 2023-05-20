@@ -8,8 +8,8 @@ export default function Prompt({ prompt }) {
   
 
   return (
-    <>
-      <div>
+    <div className={styles.prompt}>
+      <div className={styles.system}>
         <h3>System</h3>
         <textarea 
           value={system}
@@ -18,17 +18,18 @@ export default function Prompt({ prompt }) {
       </div>
       <div className={styles.samples}>
         <h3>Samples</h3>
-        <button onClick={() => setSamples([...samples, { user: '', assistant: '' }])}>Add Sample</button>
         {
           samples.map((sample, index) => {
             return (
-              <div key={index}>
-                <button onClick={() => {
-                  const newSamples = [...samples]
-                  newSamples.splice(index, 1)
-                  setSamples(newSamples)
-                }}>⨉</button>
-                <h4>User</h4>
+              <div key={index} className={styles.sample}>
+                <div className={styles.sampleHeader}>
+                  <h4>User</h4>
+                  <button className={styles.delete} onClick={() => {
+                    const newSamples = [...samples]
+                    newSamples.splice(index, 1)
+                    setSamples(newSamples)
+                  }}>⨉</button>
+                </div>
                 <textarea 
                   value={sample.user}
                   onChange={e => {
@@ -37,7 +38,9 @@ export default function Prompt({ prompt }) {
                     setSamples(newSamples)
                   }}
                 />
-                <h4>Assistant</h4>
+                <div className={styles.sampleHeader}>
+                  <h4>Assistant</h4>
+                </div>
                 <textarea
                   value={sample.assistant} 
                   onChange={e => {
@@ -50,8 +53,11 @@ export default function Prompt({ prompt }) {
             )
           })
         }
-        <button onClick={() => setSamples(prompt.samples)}>Reset samples</button>
+        <div className={styles.sampleButtons}>
+          <button onClick={() => setSamples([...samples, { user: '', assistant: '' }])}>Add Sample</button>
+          <button type='reset' onClick={() => setSamples(prompt.samples)}>Reset samples</button>
+        </div>
       </div>
-    </>
+    </div>
   )
 }
