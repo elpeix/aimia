@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { translate } from '../../../lib/api.js'
 import Loading from '../Loading.jsx'
-import styles from './Translate.module.css'
+import '../../page.css'
 import { translatePrompt } from '../../../lib/prompts.js'
 import Prompt from '../Prompt/Prompt.jsx'
 import Scroller from '../Scroller/Scroller.jsx'
@@ -54,9 +54,9 @@ export default function Translate() {
   }
 
   return (
-    <div className={styles.translate}>
-      <div className={styles.main}>
-        <div className={styles.content}>
+    <div className='page'>
+      <div className='page-main'>
+        <div className='page-content'>
           <div>
             <h3>From</h3>
             <select value={from} onChange={e => setFrom(e.target.value)}>
@@ -67,10 +67,10 @@ export default function Translate() {
             </select>
             <ReactQuill
               theme='snow'
-              className={styles.input}
+              className='page-input'
               placeholder='Enter text to translate'
               value={text}
-              onChange={(e) => setText(e.target.value)}
+              onChange={(value) => setText(value)}
               onKeyDown={handleKeyDown}
             />
           </div>
@@ -81,11 +81,11 @@ export default function Translate() {
                 <option key={index} value={language.code}>{language.name}</option>
               ))}
             </select>
-            <div className={styles.result}>
+            <div className='page-result'>
               {loading && <Loading />}
               <ReactQuill
                 theme='snow'
-                className={styles.output} 
+                className='page-output' 
                 value={translation}
                 modules={{ 
                   toolbar: []
@@ -94,7 +94,7 @@ export default function Translate() {
             </div>
           </div>
         </div>
-        <div className={styles.buttons}>
+        <div className='page-buttons'>
           <button 
             type='submit'
             onClick={handleSubmit}
@@ -113,7 +113,7 @@ export default function Translate() {
           {text && (
             <button type='reset' onClick={() => {
               setText('')
-              setTranslation('')
+              setTranslation(resultText)
             }}>
               Clear
             </button>
@@ -122,7 +122,7 @@ export default function Translate() {
 
         {error && <p className='error'>{error}</p>}
       </div>
-      <Scroller className={`${styles.sideBar} scrollable top`}>
+      <Scroller className='page-sideBar'>
         <Prompt
           prompt={translatePrompt}
           onChange={(data) => setChangedPrompt(data)} />

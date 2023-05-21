@@ -4,6 +4,9 @@ import './App.css'
 import Layout from './components/Layout'
 import Translate from './components/Translate/Translate'
 import Home from './components/Home'
+import RawMode from './components/RawMode'
+import About from './components/About'
+import Descriptor from './components/Descriptor'
 
 export const AppContext = createContext()
 
@@ -14,10 +17,9 @@ export default function App() {
   const home = { name: '', view: 'home', component: <Home /> }
   const pages = [
     { name: 'Translate', view: 'translate', component: <Translate /> },
-    { name: 'Create content', view: 'create' },
-    { name: 'About', view: 'about' },
-    { name: 'Profile', view: 'profile' },
-    { name: 'Settings', view: 'settings' },
+    { name: 'Generate description', view: 'descriptor', component: <Descriptor /> },
+    { name: 'Free content', view: 'free', component: <RawMode /> },
+    { name: 'About', view: 'about', component: <About /> },
   ]
 
   const changeView = (view) => {

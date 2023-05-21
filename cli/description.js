@@ -1,5 +1,5 @@
 import { performance } from 'perf_hooks'
-import { getDescription } from '../lib/api.js'
+import { generateDescription, getDescription } from '../lib/api.js'
 import { readLineAsync } from './cli.js'
 import ora from 'ora'
 
@@ -17,7 +17,7 @@ const intervalId = setInterval(() => {
   spinner.text = `Generating description... ${seconds}s`
 }, 1000)
 
-const data = await getDescription({ input })
+const data = await generateDescription({ input })
   .catch(error => {
     spinner.fail(error.message)
     process.exit(1)
