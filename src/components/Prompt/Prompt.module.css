@@ -18,7 +18,13 @@
   resize: vertical;
   width: 100%;
 }
-
+.system {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 0.5rem;
+  width: 100%;
+}
 .system textarea {
   min-height: 6rem;;
 }
@@ -57,6 +63,9 @@
   padding: 0rem;
   width: 1.4rem;
   aspect-ratio: 1;
+  border-radius: 50%;
+  font-size: 0.6rem;
+  transition: all var(--transition-duration) var(--transition-timing-function);
 
 }
 .delete:hover {
