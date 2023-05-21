@@ -5,13 +5,16 @@ import styles from './Translate.module.css'
 import { translatePrompt } from '../../../lib/prompts.js'
 import Prompt from '../Prompt/Prompt.jsx'
 import Scroller from '../Scroller/Scroller.jsx'
+import ReactQuill from 'react-quill'
+import 'react-quill/dist/quill.snow.css'
 
 export default function Translate() {
 
   const [from, setFrom] = useState('auto')
   const [to, setTo] = useState('es')
   const [text, setText] = useState('')
-  const [translation, setTranslation] = useState('')
+  const resultText = '<em>The&nbsp;result&nbsp;will&nbsp;appear here.</em>'
+  const [translation, setTranslation] = useState(resultText)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState()
   const [changedPrompt, setChangedPrompt] = useState({ changed: false, system: '', samples: [] })
@@ -62,7 +65,9 @@ export default function Translate() {
                 <option key={index} value={language.code}>{language.name}</option>
               ))}
             </select>
-            <textarea
+            <ReactQuill
+              theme='snow'
+              className={styles.input}
               placeholder='Enter text to translate'
               value={text}
               onChange={(e) => setText(e.target.value)}
@@ -78,7 +83,14 @@ export default function Translate() {
             </select>
             <div className={styles.result}>
               {loading && <Loading />}
-              <textarea value={translation} readOnly />
+              <ReactQuill
+                theme='snow'
+                className={styles.output} 
+                value={translation}
+                modules={{ 
+                  toolbar: []
+                }}
+                readOnly />
             </div>
           </div>
         </div>
@@ -89,7 +101,7 @@ export default function Translate() {
             disabled={!text || loading || from === to}>
             Translate
           </button>
-          {translation && (
+          {translation && translation !== resultText && (
             <button onClick={() => {
               setText(translation)
               setTranslation('')
