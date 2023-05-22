@@ -34,7 +34,7 @@ export default function GenericCase({ basePrompt, call }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    if (!text || !prompt.changed || loading) return
+    if (!text || loading) return
     setResult('')
     setLoading(true)
     const result = await call({ input: text, prompt })
@@ -54,16 +54,18 @@ export default function GenericCase({ basePrompt, call }) {
         <div className='page-content'>
           <div>
             <h3>Input</h3>
-            <ReactQuill
-              theme='snow'
-              className='page-input'
-              placeholder='Enter text here.'
-              value={text}
-              onChange={(value) => {
-                setText(value)
-              }}
-              onKeyDown={handleKeyDown}
-            />
+            <div className='page-entry'>
+              <ReactQuill
+                theme='snow'
+                className='page-input'
+                placeholder='Enter text here.'
+                value={text}
+                onChange={(value) => {
+                  setText(value)
+                }}
+                onKeyDown={handleKeyDown}
+              />
+            </div>
           </div>
           <div>
             <h3>Result</h3>
@@ -92,6 +94,7 @@ export default function GenericCase({ basePrompt, call }) {
             <button type='reset' onClick={() => {
               setText('')
               setResult(resultText)
+              setError(null)
             }}>
               Clear
             </button>

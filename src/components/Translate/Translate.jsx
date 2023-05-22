@@ -114,6 +114,7 @@ export default function Translate() {
             <button type='reset' onClick={() => {
               setText('')
               setTranslation(resultText)
+              setError(null)
             }}>
               Clear
             </button>
