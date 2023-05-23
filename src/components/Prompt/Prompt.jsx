@@ -16,6 +16,11 @@ export default function Prompt({ system, setSystem, samples, setSamples, changed
         <h3>
           Examples for improving the assistant&apos;s response
         </h3>
+        { samples.length === 0 && (
+          <p className={styles.samplesEmpty}>
+            No examples yet. Add some to improve the assistant&apos;s response.
+          </p>
+        )}
         {
           samples.map((sample, index) => {
             return (
@@ -60,7 +65,7 @@ export default function Prompt({ system, setSystem, samples, setSamples, changed
             const newSamples = [...samples]
             newSamples.push({ user: '', assistant: '' })
             setSamples(newSamples)
-          }}>Add Sample</button>
+          }}>Add example</button>
           {changed && (
             <button onClick={reset} type='reset'>Reset</button>
           )}

@@ -37,6 +37,12 @@
   width: 100%;
 }
 
+.samplesEmpty {
+  margin: 0.5rem auto;
+  color: var(--text-color-mid);
+  font-size: 0.8rem;
+}
+
 .samples > * {
   width: 100%;
 }

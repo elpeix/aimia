@@ -28,6 +28,7 @@
 .page-topics-help {
   cursor: default;
   color: var(--info-color);
+  margin: 0.5rem 0 0;
 }
 
 .page-topics a {

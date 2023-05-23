@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
-import { translate } from '../../../lib/api.js'
-import Loading from '../Loading.jsx'
-import '../../page.css'
-import { translatePrompt } from '../../../lib/prompts.js'
-import Prompt from '../Prompt/Prompt.jsx'
-import Scroller from '../Scroller/Scroller.jsx'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
-import Tooltip from '../Tooltip.jsx'
+import { translate } from '../../../lib/api.js'
+import { translatePrompt } from '../../../lib/prompts.js'
+import '../../page.css'
 import HelpIcon from '../HelpIcon.jsx'
+import Loading from '../Loading.jsx'
+import Prompt from '../Prompt/Prompt.jsx'
+import Scroller from '../Scroller/Scroller.jsx'
+import Tooltip from '../Tooltip.jsx'
 
 export default function Translate() {
 
@@ -28,7 +28,6 @@ export default function Translate() {
   const [productName, setProductName] = useState('')
   const [targetAudience, setTargetAudience] = useState('')
   const [toneOfVoice, setToneOfVoice] = useState('')
-
 
   const languages = [
     { code: 'en', name: 'English' },
@@ -56,19 +55,14 @@ export default function Translate() {
     setLoading(true)
     const prompt = changedPrompt ? {system, samples} : translatePrompt
 
-    console.log('commerceDescription', commerceDescription)
-    console.log('productName', productName)
-    console.log('targetAudience', targetAudience)
-    console.log('toneOfVoice', toneOfVoice)
-    
-    if (toneOfVoice) {
-      if (productName) {
-        if (prompt.system.includes('<productName>')) {
-          prompt.system = prompt.system.replace(/<productName>/g, productName)
-        } else {
-          prompt.system = `It works for the product ${productName}. ${prompt.system}` 
-        }
+    if (productName) {
+      if (prompt.system.includes('<productName>')) {
+        prompt.system = prompt.system.replace(/<productName>/g, productName)
+      } else {
+        prompt.system = `It works for the product ${productName}. ${prompt.system}` 
       }
+    }
+    if (toneOfVoice) {
       if (prompt.system.includes('<toneOfVoice>')) {
         prompt.system = prompt.system.replace(/<toneOfVoice>/g, toneOfVoice)
       } else {
@@ -89,13 +83,6 @@ export default function Translate() {
         prompt.system = `Your assistant is a ${commerceDescription} ecommerce assistant. ${prompt.system}` 
       }
     }
-    console.log('system', prompt.system)
-
-    if (prompt.system) {
-      setLoading(false)
-      return
-    }
-
 
     const result = await translate({ from, to, input: text, prompt })
       .catch(err => {
@@ -115,7 +102,7 @@ export default function Translate() {
             <div className='page-topics'>
               <div>
                 <a onClick={() => setShowAdvanced(false)}>Hide additional options</a>
-                <p>
+                <div className='page-topics-help'>
                   <Tooltip title={`
                     You can use the following variables in your prompt system:
                     <br />
@@ -144,9 +131,9 @@ export default function Translate() {
                     <br />
                     Otherwise, the system will use the default prompt system.
                   `}>
-                    <span className='page-topics-help'><HelpIcon /></span>
+                    <HelpIcon />
                   </Tooltip>
-                </p>
+                </div>
               </div>
               <div>
               </div>
