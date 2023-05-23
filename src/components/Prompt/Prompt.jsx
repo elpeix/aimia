@@ -6,14 +6,16 @@ export default function Prompt({ system, setSystem, samples, setSamples, changed
   return (
     <div className={styles.prompt}>
       <div className={styles.system}>
-        <h3>System</h3>
+        <h2>Prompt</h2>
         <textarea 
           value={system}
           onChange={e => setSystem(e.target.value)}
         />
       </div>
       <div className={styles.samples}>
-        <h3>Samples</h3>
+        <h3>
+          Examples for improving the assistant&apos;s response
+        </h3>
         {
           samples.map((sample, index) => {
             return (
