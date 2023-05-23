@@ -1,16 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styles from './Prompt.module.css'
 
-export default function Prompt({ prompt, onChange }) {
-
-  const [system, setSystem] = useState(prompt.system)
-  const [samples, setSamples] = useState(prompt.samples)
-  const [changed, setChanged] = useState(false)
-
-  const handleChange = (promptChanged) => {
-    setChanged(promptChanged)
-    onChange({ promptChanged, system, samples })
-  }
+export default function Prompt({ system, setSystem, samples, setSamples, changed, reset }) {
 
   return (
     <div className={styles.prompt}>
@@ -18,10 +9,7 @@ export default function Prompt({ prompt, onChange }) {
         <h3>System</h3>
         <textarea 
           value={system}
-          onChange={e => {
-            setSystem(e.target.value)
-            handleChange(true)
-          }}
+          onChange={e => setSystem(e.target.value)}
         />
       </div>
       <div className={styles.samples}>
@@ -36,16 +24,16 @@ export default function Prompt({ prompt, onChange }) {
                     const newSamples = [...samples]
                     newSamples.splice(index, 1)
                     setSamples(newSamples)
-                    handleChange(true)
                   }}>⨉</button>
                 </div>
                 <textarea 
                   value={sample.user}
                   onChange={e => {
                     const newSamples = [...samples]
-                    newSamples[index].user = e.target.value
+                    const newSample = { ...newSamples[index] }
+                    newSample.user = e.target.value
+                    newSamples[index] = newSample
                     setSamples(newSamples)
-                    handleChange(true)
                   }}
                 />
                 <div className={styles.sampleHeader}>
@@ -55,9 +43,10 @@ export default function Prompt({ prompt, onChange }) {
                   value={sample.assistant} 
                   onChange={e => {
                     const newSamples = [...samples]
-                    newSamples[index].assistant = e.target.value
+                    const newSample = { ...newSamples[index] }
+                    newSample.assistant = e.target.value
+                    newSamples[index] = newSample
                     setSamples(newSamples)
-                    handleChange(true)
                   }}
                 />
               </div>
@@ -66,15 +55,13 @@ export default function Prompt({ prompt, onChange }) {
         }
         <div className={styles.sampleButtons}>
           <button onClick={() => {
-            setSamples([...samples, { user: '', assistant: '' }])
-            handleChange(true)
+            const newSamples = [...samples]
+            newSamples.push({ user: '', assistant: '' })
+            setSamples(newSamples)
           }}>Add Sample</button>
-          { changed &&
-            <button type='reset' onClick={() => {
-              setSamples(prompt.samples)
-              handleChange(false)
-            }}>Reset samples</button>
-          }
+          {changed && (
+            <button onClick={reset} type='reset'>Reset</button>
+          )}
         </div>
       </div>
     </div>

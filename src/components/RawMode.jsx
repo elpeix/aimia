@@ -6,13 +6,8 @@ import GenericCase from './GenericCase'
 export default function RawMode() {
 
   return <GenericCase
-    basePrompt={{
-      system: '',
-      samples: [{
-        user: '',
-        assistant: ''
-      }] }
-    }
-    call={call} />
+    basePrompt={{ system: '', samples: [] }}
+    call={call}
+  />
 
 }

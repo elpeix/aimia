@@ -13,11 +13,13 @@ export default function Translate() {
   const [from, setFrom] = useState('auto')
   const [to, setTo] = useState('es')
   const [text, setText] = useState('')
+  const [system, setSystem] = useState(translatePrompt.system)
+  const [samples, setSamples] = useState([...translatePrompt.samples])
   const resultText = '<em>The&nbsp;result&nbsp;will&nbsp;appear here.</em>'
   const [translation, setTranslation] = useState(resultText)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState()
-  const [changedPrompt, setChangedPrompt] = useState({ changed: false, system: '', samples: [] })
+  const [changedPrompt, setChangedPrompt] = useState(false)
 
   const languages = [
     { code: 'en', name: 'English' },
@@ -42,7 +44,7 @@ export default function Translate() {
     if (!text || loading || from === to) return
     setTranslation('')
     setLoading(true)
-    const prompt = changedPrompt.changed ? changedPrompt : translatePrompt
+    const prompt = changedPrompt ? {system, samples} : translatePrompt
     const result = await translate({ from, to, input: text, prompt })
       .catch(err => {
         console.log(err)
@@ -125,8 +127,23 @@ export default function Translate() {
       </div>
       <Scroller className='page-sideBar'>
         <Prompt
-          prompt={translatePrompt}
-          onChange={(data) => setChangedPrompt(data)} />
+          system={system}
+          samples={samples}
+          setSystem={(newSystem) => {
+            setChangedPrompt(true)
+            setSystem(newSystem)
+          }}
+          setSamples={(newSamples) => {
+            setChangedPrompt(true)
+            setSamples(newSamples)
+          }}
+          changed = {changedPrompt}
+          reset={() => {
+            setChangedPrompt(false)
+            setSystem(translatePrompt.system)
+            setSamples([...translatePrompt.samples])
+          }}
+        />
       </Scroller>
     </div>
   )

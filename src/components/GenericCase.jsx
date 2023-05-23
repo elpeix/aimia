@@ -18,11 +18,9 @@ export default function GenericCase({ basePrompt, call }) {
   const [text, setText] = useState('')
   const resultText = '<em>The&nbsp;result&nbsp;will&nbsp;appear here.</em>'
   const [result, setResult] = useState(resultText)
-  const [prompt, setPrompt] = useState({
-    changed: false,
-    system: basePrompt.system,
-    samples: basePrompt.samples
-  })
+  const [system, setSystem] = useState(basePrompt.system)
+  const [samples, setSamples] = useState([...basePrompt.samples])
+  const [changedPrompt, setChangedPrompt] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState()
 
@@ -34,9 +32,11 @@ export default function GenericCase({ basePrompt, call }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    if (!text || loading) return
+    if (!text || !system || loading) return
     setResult('')
+    setError(null)
     setLoading(true)
+    const prompt = changedPrompt ? { system, samples } : basePrompt
     const result = await call({ input: text, prompt })
       .catch(err => {
         console.log(err)
@@ -60,9 +60,7 @@ export default function GenericCase({ basePrompt, call }) {
                 className='page-input'
                 placeholder='Enter text here.'
                 value={text}
-                onChange={(value) => {
-                  setText(value)
-                }}
+                onChange={value => setText(value)}
                 onKeyDown={handleKeyDown}
               />
             </div>
@@ -75,9 +73,7 @@ export default function GenericCase({ basePrompt, call }) {
                 theme='snow'
                 className='page-output' 
                 value={result}
-                modules={{ 
-                  toolbar: []
-                }}
+                modules={{ toolbar: [] }}
                 readOnly />
             </div>
           </div>
@@ -105,8 +101,23 @@ export default function GenericCase({ basePrompt, call }) {
       </div>
       <Scroller className='page-sideBar'>
         <Prompt
-          prompt={prompt}
-          onChange={(data) => setPrompt(data)} />
+          system={system}
+          samples={samples}
+          setSystem={(newSystem) => {
+            setChangedPrompt(true)
+            setSystem(newSystem)
+          }}
+          setSamples={(newSamples) => {
+            setChangedPrompt(true)
+            setSamples(newSamples)
+          }}
+          changed = {changedPrompt}
+          reset={() => {
+            setChangedPrompt(false)
+            setSystem(basePrompt.system)
+            setSamples([...basePrompt.samples])
+          }}
+        />
       </Scroller>
     </div>
   )
