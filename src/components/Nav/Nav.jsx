@@ -1,7 +1,7 @@
 
 import React, { useContext } from 'react'
-import { AppContext } from '../../App'
 import styles from './Nav.module.css'
+import AppContext from '../../contexts/AppContext'
 
 export default function Nav() {
 

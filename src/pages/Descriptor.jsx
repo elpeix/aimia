@@ -1,5 +1,5 @@
 import React from 'react'
-import GenericCase from './GenericCase'
+import GenericCase from '../components/GenericCase'
 import { descriptionPrompt } from '../../lib/prompts'
 import { generateDescription } from '../../lib/api'
 

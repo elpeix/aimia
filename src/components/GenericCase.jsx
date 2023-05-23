@@ -1,9 +1,12 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import ReactQuill from 'react-quill'
 import Loading from './Loading'
 import Scroller from './Scroller/Scroller'
 import Prompt from './Prompt/Prompt'
 import '../page.css'
+import AppContext from '../contexts/AppContext'
+import Options from './Options'
+import { getOptionsPrompt } from '../../lib/options'
 
 /**
  * GenericCase is a component that can be used to create a page with a text input
@@ -14,6 +17,8 @@ import '../page.css'
  * @param {Function} props.call - The function to call to generate text.
  */
 export default function GenericCase({ basePrompt, call }) {
+
+  const { options } = useContext(AppContext)
 
   const [text, setText] = useState('')
   const resultText = '<em>The&nbsp;result&nbsp;will&nbsp;appear here.</em>'
@@ -37,6 +42,8 @@ export default function GenericCase({ basePrompt, call }) {
     setError(null)
     setLoading(true)
     const prompt = changedPrompt ? { system, samples } : basePrompt
+    prompt.system = getOptionsPrompt(options, prompt.system)
+
     const result = await call({ input: text, prompt })
       .catch(err => {
         console.log(err)
@@ -51,6 +58,7 @@ export default function GenericCase({ basePrompt, call }) {
   return (
     <div className='page'>
       <div className='page-main'>
+        <Options />
         <div className='page-content'>
           <div>
             <h3>Input</h3>

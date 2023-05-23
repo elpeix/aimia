@@ -1,18 +1,26 @@
-import React, { createContext, useState } from 'react'
+import React, { useState } from 'react'
 
 import './App.css'
 import Layout from './components/Layout'
-import Translate from './components/Translate/Translate'
-import Home from './components/Home'
+import Translate from './pages/Translate'
+import Home from './pages/Home'
 import RawMode from './components/RawMode'
-import About from './components/About'
-import Descriptor from './components/Descriptor'
+import About from './pages/About'
+import Descriptor from './pages/Descriptor'
+import AppContext from './contexts/AppContext'
+import { options as defaultOptions, getOptionsPrompt } from '../lib/options'
 
-export const AppContext = createContext()
+const getState = () => {
+  const path = window.location.pathname
+  return path === '/' ? 'home' : path.slice(1)
+}
 
 export default function App() {
 
-  const [view, setView] = useState('home')
+  const [page, setPage] = useState(getState())
+  
+  const [showOptions, setShowOptions] = useState(false)
+  const [options, setOptions] = useState(defaultOptions)
 
   const home = { name: '', view: 'home', component: <Home /> }
   const pages = [
@@ -23,16 +31,37 @@ export default function App() {
   ]
 
   const changeView = (view) => {
+    history.pushState({}, '', `/${view === 'home' ? '' : view}`)
     pages.find(page => page.view === view) 
-      ? setView(view)
-      : setView('home')
+      ? setPage(view)
+      : setPage('home')
   }
 
-  const activePage = view === 'home'
+  const activePage = page === 'home'
     ? home
-    : pages.find(page => page.view === view)
+    : pages.find(p => p.view === page)
+   
+  window.onpopstate = () => {
+    setPage(getState())
+  }
+
+  const updateOption = (key, value) => {
+    if (key in options) {
+      setOptions({ ...options, [key]: value})
+    }
+  }
   
-  const value = { view, changeView, activePage, pages }
+  const value = { 
+    view: page,
+    changeView,
+    activePage,
+    pages,
+    showOptions,
+    setShowOptions,
+    options,
+    updateOption,
+    getOptionsPrompt
+  }
 
   return (
     <AppContext.Provider value={value}>
