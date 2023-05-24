@@ -3,9 +3,10 @@ import AppContext from '../contexts/AppContext'
 
 export default function Main() {
 
-  const app = useContext(AppContext)
-  const title = app.activePage?.name ?? '404'
-  const children = app.activePage?.component ?? <div className='notFound'>Page not found</div>
+  const { getActivePage } = useContext(AppContext)
+  const activePage = getActivePage()
+  const title = activePage?.name ?? '404'
+  const children = activePage?.component ?? 'Page not found'
 
   return (
     <main className='content'>

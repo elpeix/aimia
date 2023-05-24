@@ -3,15 +3,15 @@ import AppContext from '../contexts/AppContext'
 
 export default function Home() {
 
-  const app = useContext(AppContext)
+  const { pages, changeView } = useContext(AppContext)
 
   return (
     <div className='home'>
-      <img className='home-icon' src='/ico.svg' alt='Google Translate' />
+      <img className='home-icon' src='/ico.svg' alt='AI Tools' />
       <ul>
-        { app.pages.map((page, index) => (
+        { pages.map((page, index) => (
           <li key={index}>
-            <a onClick={() => app.changeView(page.view)}>{page.name}</a>
+            <a onClick={() => changeView(page.view)}>{page.name}</a>
           </li>
         ))}
       </ul>

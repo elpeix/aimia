@@ -9,6 +9,7 @@ import About from './pages/About'
 import Descriptor from './pages/Descriptor'
 import AppContext from './contexts/AppContext'
 import { options as defaultOptions, getOptionsPrompt } from '../lib/options'
+import NotFound from './pages/NotFound'
 
 const getState = () => {
   const path = window.location.pathname
@@ -18,11 +19,11 @@ const getState = () => {
 export default function App() {
 
   const [page, setPage] = useState(getState())
-  
   const [showOptions, setShowOptions] = useState(false)
   const [options, setOptions] = useState(defaultOptions)
 
   const home = { name: '', view: 'home', component: <Home /> }
+  const notFound = { name: '404', view: '404', component: <NotFound /> }
   const pages = [
     { name: 'Translate', view: 'translate', component: <Translate /> },
     { name: 'Generate description', view: 'descriptor', component: <Descriptor /> },
@@ -37,9 +38,13 @@ export default function App() {
       : setPage('home')
   }
 
-  const activePage = page === 'home'
-    ? home
-    : pages.find(p => p.view === page)
+  
+  const getActivePage = () => {
+    const activePage = page === 'home'
+      ? home
+      : pages.find(p => p.view === page)
+    return activePage ?? notFound
+  }
    
   window.onpopstate = () => {
     setPage(getState())
@@ -54,7 +59,7 @@ export default function App() {
   const value = { 
     view: page,
     changeView,
-    activePage,
+    getActivePage,
     pages,
     showOptions,
     setShowOptions,

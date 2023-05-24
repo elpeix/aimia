@@ -5,30 +5,22 @@ import AppContext from '../../contexts/AppContext'
 
 export default function Nav() {
 
-  const app = useContext(AppContext)
-
-  const handleClick = (view) => {
-    app.changeView(view)
-  }
+  const { view, changeView, pages } = useContext(AppContext)
   
   return (
     <nav className={styles.nav}>
       <ul>
-        <li className={
-          app.view === 'home' ? styles.active : ''
-        }>
-          <a onClick={() => handleClick('home')}>
-            <img src='/ico.svg' alt='Google Translate' />
+        <li className={ view === 'home' ? styles.active : ''}>
+          <a onClick={() => changeView('home')}>
+            <img src='/ico.svg' alt='AI Tools' />
             Home
           </a>
         </li>
       </ul>
       <ul>
-        { app.pages.map((page, index) => (
-          <li key={index} className={
-            page.view === app.view ? styles.active : ''
-          }>
-            <a onClick={() => handleClick(page.view)}>{page.name}</a>
+        { pages.map((page, index) => (
+          <li key={index} className={ page.view === view ? styles.active : '' }>
+            <a onClick={() => changeView(page.view)}>{page.name}</a>
           </li>
         ))}
       </ul>
