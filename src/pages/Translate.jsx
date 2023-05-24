@@ -51,9 +51,10 @@ export default function Translate() {
     setError('')
     setLoading(true)
     const prompt = changedPrompt ? {system, samples} : translatePrompt
-    prompt.system = getOptionsPrompt(options, prompt.system)
+    const system = getOptionsPrompt(options, prompt.system)
+    const promptToSubmit = { ...prompt, system }
 
-    const result = await translate({ from, to, input: text, prompt })
+    const result = await translate({ from, to, input: text, prompt: promptToSubmit })
       .catch(err => {
         console.log(err)
         setError(err.message)
