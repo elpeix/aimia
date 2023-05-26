@@ -25,7 +25,8 @@ export default function App() {
   const home = { name: '', view: 'home', component: <Home /> }
   const notFound = { name: '404', view: '404', component: <NotFound /> }
   const pages = [
-    { name: 'Translate', view: 'translate', component: <Translate /> },
+    { name: 'Translate Open AI', view: 'translate', component: <Translate /> },
+    // { name: 'Translate DeepL', view: 'translateDeepL', component: <TranslateDeepL /> },
     { name: 'Generate description', view: 'descriptor', component: <Descriptor /> },
     { name: 'Free content', view: 'free', component: <RawMode /> },
     { name: 'About', view: 'about', component: <About /> },

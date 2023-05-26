@@ -5,6 +5,15 @@
   width: 100%;
 }
 
+.page.no-grid {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  gap: 1rem;
+  width: 100%;
+}
+
 .page-main {
   display: flex;
   flex-grow: 4;
